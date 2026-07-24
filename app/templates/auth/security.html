@@ -1,0 +1,42 @@
+{% extends 'auth/join.html' %}
+
+{% block title %}
+    Security
+{% endblock %}
+
+{% block content %}
+
+    <section class="overview">
+        <h2>Security Settings</h2>
+
+        <div class="row">
+            <span>Username</span>
+            <span>{{ current_user.username }}</span>
+        </div>
+
+        <div class="row">
+            <span>Email</span>
+            <span>{{ current_user.email }}</span>
+        </div>
+
+        <div class="row">
+            <span>Joined</span>
+            <span>{{ current_user.joined_at.strftime('%d-%b-%y') }}</span>
+        </div>
+
+        <div class="row">
+            <span>Account Status</span>
+            <span class="badge">Active</span>
+        </div>
+
+        <div class="row">
+            <span>Password</span>
+            <span>Protected</span>
+        </div>
+
+        <div class="links">
+            <a href="/change_password" class="btn">Change Password</a>
+        </div>
+    </section>
+
+{% endblock %}

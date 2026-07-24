@@ -1,0 +1,57 @@
+{% extends "auth/join.html" %}
+
+{% block content %}
+
+<nav class="navbar">
+  <h3>Profile</h3>
+  <div class="user-box">
+    <div class="small-avatar">{{ current_user.username[0]|upper }}</div>
+    <span>{{ current_user.username }}</span>
+  </div>
+</nav>
+
+<section class="profile-card">
+  <div class="avatar-section">
+    <div class="avatar">
+      {% if current_user.picture %}
+        <img class="avatar-img"
+             src="{{ url_for('static', filename='uploads/' + current_user.picture) }}">
+      {% else %}
+        {{ current_user.username[0]|upper }}
+      {% endif %}
+    </div>
+    <form method="POST" enctype="multipart/form-data">
+      {{ form.hidden_tag() }}
+      <div class="picture-upload">
+        {{ form.picture(id="picture", onchange="this.form.submit()") }}
+        <label for="picture"><i class="fa-solid fa-camera"></i> Change Photo</label>
+      </div>
+    </form>
+  </div>
+  <div class="info">
+    <h1>{{ current_user.username }}</h1>
+    <p class="email">{{ current_user.email }}</p>
+    <p class="bio">{{ current_user.bio or "No bio added yet." }}</p>
+  </div>
+</section>
+
+<section class="overview">
+  <h2>Account Overview</h2>
+  <div class="row">
+    <span>Full Name</span>
+    <span>{{ current_user.fullname or "-" }}</span>
+  </div>
+  <div class="row">
+    <span>Email</span>
+    <span>{{ current_user.email }}</span>
+  </div>
+  <div class="row">
+    <span>Joined</span>
+    <span>{{ current_user.joined_at.strftime('%d %b %Y') }}</span>
+  </div>
+  <div class="row">
+    <span>Status</span>
+    <span class="badge">Active</span>
+  </div>
+</section>
+{% endblock %}

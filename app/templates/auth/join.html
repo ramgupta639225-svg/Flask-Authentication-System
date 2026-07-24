@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{% block title %}Auth App{% endblock %}</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+
+<div class="container">
+  <aside class="sidebar">
+    <h2 class="logo">Auth<span>App</span></h2>
+    <ul>
+      <li><a href="/profile"><i class="fa-regular fa-user"></i> Profile</a></li>
+      <li><a href="/edit_profile"><i class="fa-solid fa-pen"></i> Edit Profile</a></li>
+      <li><a href="/change_password"><i class="fa-solid fa-lock"></i> Change Password</a></li>
+      <li><a href="/security"><i class="fa-solid fa-shield"></i> Security</a></li>
+      <li><a href="/logout" onclick="return confirm('Are you sure you want to logout?')"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
+    </ul>
+  </aside>
+
+  <main class="main">
+    <div class="page-content">
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          {% for category, message in messages %}
+            <div class="flash {{ category }}">{{ message }}</div>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+
+      {% block content %}{% endblock %}
+    </div>
+  </main>
+</div>
+
+</body>
+</html>

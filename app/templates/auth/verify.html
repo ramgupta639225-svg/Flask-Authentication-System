@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify OTP</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <div class="auth">
+        <div class="card">
+
+            <h1 class="auth-title">Verify OTP</h1>
+            <p class="auth-subtitle">Enter the OTP sent to your email</p>
+
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="flash {{ category }}">{{ message }}</div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+
+            <form method="POST" class="form">
+                {{ form.hidden_tag() }}
+
+                <div class="form-group">
+                    {{ form.otp.label(class="form-label") }}
+                    {{ form.otp(class="form-input") }}
+                </div>
+
+                {{ form.submit(class="btn btn-primary") }}
+            </form>
+
+            <div class="links">
+                <p>Didn't receive OTP?</p>
+                <a href="{{ url_for('auth.resend_otp') }}">Resend OTP</a>
+            </div>
+
+            <div class="links">
+                <a href="{{ url_for('auth.forget') }}">← Back</a>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>

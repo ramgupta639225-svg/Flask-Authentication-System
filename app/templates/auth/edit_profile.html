@@ -1,0 +1,47 @@
+{% extends 'auth/join.html' %}
+
+{% block title %}
+    Edit Profile
+{% endblock %}
+
+{% block content %}
+
+    <div class="auth">
+        <div class="card">
+
+            <h1 class="auth-title">Edit Profile</h1>
+            <p class="auth-subtitle">Update your profile details</p>
+
+            <form method="POST" class="form">
+                {{ form.hidden_tag() }}
+
+                <div class="form-group">
+                    {{ form.username.label(class="form-label") }}
+                    {{ form.username(class="form-input") }}
+                </div>
+
+                <div class="form-group">
+                    {{ form.fullname.label(class="form-label") }}
+                    {{ form.fullname(class="form-input") }}
+                </div>
+
+                <div class="form-group">
+                    {{ form.bio.label(class="form-label") }}
+                    {{ form.bio(class="form-input") }}
+                </div>
+
+                {{ form.submit(class="btn btn-primary") }}
+            </form>
+
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for msg in messages %}
+                        <div class="flash info">{{ msg }}</div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+
+        </div>
+    </div>
+
+{% endblock %}

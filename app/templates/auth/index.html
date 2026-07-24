@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Auth App</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+
+<div class="auth">
+  <div class="card hero-card">
+    <div class="hero-wrapper">
+      <div class="hero-left">
+        <h1 class="hero-title">Auth App</h1>
+        <p class="hero-subtitle">
+          Secure authentication system with profile, OTP verification, password reset, and account security.
+        </p>
+        <div class="hero-buttons">
+          <a href="/register" class="btn btn-primary">Create Account</a>
+          <a href="/login" class="btn btn-outline">Login</a>
+        </div>
+        <div class="hero-features">
+          <p>✓ Secure Login</p>
+          <p>✓ Email Verification</p>
+          <p>✓ Profile Management</p>
+          <p>✓ Password Reset</p>
+        </div>
+      </div>
+      <div class="hero-right">
+        <i class="fa-solid fa-user-shield hero-icon"></i>
+      </div>
+
+  </div>
+
+
+
+  <main class="main">
+    <div class="page-content">
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          {% for category, message in messages %}
+            <div class="flash {{ category }}">{{ message }}</div>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+
+      {% block content %}{% endblock %}
+    </div>
+  </main>
+  </div>
+</div>
+
+</body>
+</html>
