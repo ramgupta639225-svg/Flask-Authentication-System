@@ -19,4 +19,3 @@ class Config:
     MAIL_PASSWORD = os.getenv("MAIL_PASSWORD")
 
     WTF_CSRF_ENABLED = os.getenv("WTF_CSRF_ENABLED", "False").lower() == "true"
-    
